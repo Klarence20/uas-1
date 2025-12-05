@@ -1,0 +1,182 @@
+/* --- VARIABLES & BASE --- */
+:root {
+    --bg-dark: #0f1016;       /* Hitam pekat */
+    --bg-darker: #0b0c10;     /* Hitam lebih pekat untuk section selang-seling */
+    --primary-color: #4facfe; /* Biru Neon */
+    --secondary-color: #00f2fe; /* Cyan Neon */
+    --text-gray: #aab2cd;
+    --card-bg: #1c1e2a;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-dark);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* --- UTILITIES --- */
+.text-primary { color: var(--primary-color) !important; }
+.text-gray { color: var(--text-gray) !important; }
+.bg-darker { background-color: var(--bg-darker); }
+.py-section { padding: 100px 0; }
+.letter-spacing-2 { letter-spacing: 2px; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+
+/* --- NAVBAR --- */
+.navbar { transition: all 0.4s ease; background: transparent; }
+.navbar.scrolled {
+    background: rgba(15, 16, 22, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    padding: 10px 0 !important;
+}
+.nav-link { 
+    color: var(--text-gray) !important; 
+    font-weight: 500; 
+    transition: color 0.3s;
+}
+.nav-link:hover, .nav-link.active { color: white !important; }
+
+/* --- HERO SECTION --- */
+.hero-section {
+    min-height: 100vh;
+    padding-top: 80px;
+    background-image: linear-gradient(to right, rgba(15, 16, 22, 0.95), rgba(15, 16, 22, 0.8)), 
+                      url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Glowing Blobs Effect (Latar Belakang Bercahaya) */
+.blob {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(79, 172, 254, 0.15) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+    animation: moveBlob 10s infinite alternate;
+}
+.blob-1 { top: -100px; right: -100px; }
+.blob-2 { bottom: -100px; left: -100px; animation-delay: 5s; }
+
+@keyframes moveBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 30px) scale(1.1); }
+}
+
+/* Profile Image Styling */
+.profile-frame {
+    position: relative;
+    padding: 10px;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 50%; /* Bulat */
+    display: inline-block;
+}
+.profile-img {
+    border-radius: 50%;
+    border: 5px solid var(--bg-dark);
+    transition: transform 0.5s;
+    width: 350px; /* Ukuran Foto */
+    height: 350px;
+    object-fit: cover;
+}
+.profile-frame:hover .profile-img { transform: scale(1.05); }
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(79, 172, 254, 0.4);
+}
+.icon-btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: rgba(255,255,255,0.2);
+}
+.icon-btn:hover { background: white; color: var(--bg-dark); border-color: white; }
+
+/* --- ABOUT SECTION --- */
+.experience-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--bg-dark);
+    padding: 20px 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.about-img-container { position: relative; }
+.progress { background-color: rgba(255,255,255,0.1); border-radius: 10px; }
+
+/* --- PORTFOLIO CARDS --- */
+.portfolio-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.portfolio-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.card-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+}
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.portfolio-card:hover .card-img-wrapper img { transform: scale(1.1); }
+
+/* Overlay Effect on Card */
+.overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 16, 22, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.portfolio-card:hover .overlay { opacity: 1; }
+
+/* --- CONTACT FORM --- */
+.contact-box {
+    background: rgba(255,255,255,0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.custom-input {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+.custom-input:focus {
+    background: rgba(0,0,0,0.5);
+    border-color: var(--primary-color);
+    color: white;
+    box-shadow: none;
+}
